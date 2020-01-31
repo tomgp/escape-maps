@@ -1,0 +1,59 @@
+body {
+    font-family: sans-serif;
+}
+svg{
+    user-select: none;
+}
+/* EMPTY */
+
+.empty path{
+    fill: url("#hatching");
+    stroke-opacity: 0;
+}
+
+.empty text{
+    fill: none;
+}
+
+/* DANGEROUS */
+
+.dangerous path{}
+.dangerous text{}
+
+/* SECURE */
+
+.secure path{}
+.secure text{}
+
+/* ALIEN */
+.alien-start path{}
+.alien-start text{}
+
+/* HUMAN */
+.human-start path{}
+.human-start text{}
+
+/* AIRLOCK */
+.airlock path{}
+.airlock text{}
+
+
+path:hover {
+    stroke-opacity: 1;
+    fill-opacity: 0.5;
+    fill: red;
+    stroke: red;
+}
+
+.map-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 290px;
+    text-anchor:middle;
+}
+
+.label {
+    font-family: 'Share Tech Mono', monospace;
+    fill: black;
+    stroke: none;
+    pointer-events: none;
+}
