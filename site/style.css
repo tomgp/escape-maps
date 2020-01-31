@@ -13,37 +13,74 @@ svg{
 
 .empty text{
     fill: none;
+    stroke: none;
 }
 
 /* DANGEROUS */
 
-.dangerous path{}
-.dangerous text{}
+.dangerous path{
+    fill: #ccc;
+    stroke: #000;
+    stroke-opacity: 1;
+}
+.dangerous text{
+    fill:#000;
+    stroke: none;
+}
 
 /* SECURE */
 
-.secure path{}
-.secure text{}
+.secure path{
+    fill: #FFF;
+    stroke: #000;
+    stroke-opacity: 1;
+}
+.secure text{
+    fill:#000;
+    stroke: none;
+}
 
 /* ALIEN */
-.alien-start path{}
-.alien-start text{}
+.alien-start path{
+    fill:#000;
+}
+.alien-start text{
+    fill:none;
+    stroke:none;
+}
 
 /* HUMAN */
-.human-start path{}
-.human-start text{}
+.human-start path{
+    fill:#000;
+}
+.human-start text{
+    fill:none;
+    stroke:none;
+}
 
 /* AIRLOCK */
-.airlock path{}
-.airlock text{}
+.airlock path{
+    fill:#000;
+}
+.airlock text{
+    fill:none;
+    stroke:none;
+}
 
 
-path:hover {
+.hexagons g path:hover{
     stroke-opacity: 1;
-    fill-opacity: 0.5;
-    fill: red;
+    stroke-width:4;
     stroke: red;
 }
+
+.hexagons g:hover text{
+    fill: red;
+    fill-opacity: 1;
+}
+
+
+
 
 .map-title {
     font-family: 'Share Tech Mono', monospace;
