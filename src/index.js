@@ -1,9 +1,18 @@
 const d3 = require('d3');
 const alpha = "ABCDEFGHIJKLMNOPQRSTUVW";
-const title = 'huh?';
+const title = 'huh1?';
 
+// given a state for a hexagon, 
+// return the next one in the list 
+// or empty if no state is specified
 function nextState(s) {
-  const state = ["empty","dangerous","secure","alien-start","human-start","airlock"];
+  const state = [
+    "empty",
+    "dangerous",
+    "secure",
+    "alien-start",
+    "human-start",
+    "airlock" ];
   const i = state.indexOf(s) + 1;
   if( i < state.length ){
     return state[i];
@@ -11,14 +20,20 @@ function nextState(s) {
   return state[0];
 }
 
+// add a leading zero to numbers less than 10
 function pad(n){
   if(n<10){ return `0${n}`; }
   return n;
 }
+
+// this is array filter function that makes sure that 
+// the current value hasn't already been seen in the array/
 function unique(d, i, array) { 
   return array.indexOf(d) === i;
 }
 
+
+// something has changed, update the hexagons classes and icons
 function update() {
   d3.select('.map-title').text(title);
   d3.selectAll('.hexagons g')
@@ -29,6 +44,7 @@ function update() {
     });
 }
 
+// setup the map and all its data, initially it's all blank
 function init(){
   const hexagons = d3
     .selectAll('.hexagons g')
@@ -44,8 +60,10 @@ function init(){
         });
     });
 
-  const columns = hexagons.data().map(d=>d.x).filter(unique).sort((a,b)=>a-b);
-  const rows = hexagons.data().map(d=>d.y).filter(unique).sort((a,b)=>a-b);
+  const columns = hexagons.data().map(d=>d.x)
+    .filter(unique).sort((a,b)=>a-b);
+  const rows = hexagons.data().map(d=>d.y)
+    .filter(unique).sort((a,b)=>a-b);
 
   hexagons.each(function(){
     const d = d3.select(this).datum();
@@ -63,11 +81,11 @@ function init(){
       .attr('alignment-baseline','central')
       .attr('font-size','30')
       .attr('class','label')
-      .text(d=>d.label);
+      .text(d => d.label);
   
   hexagons.append('use')
     .attr('href','#blank')
-    .attr('transform',d=>`translate(${d.x},${d.y})`);
+    .attr('transform',d => `translate(${d.x}, ${d.y})`);
   
   update();
 
@@ -78,8 +96,5 @@ function init(){
   });
 }
 
-const main = () => {
-  init();
-}
-
-window.onload = main;
+// when the page is all ready to go run the code.
+window.onload = init;
