@@ -67,7 +67,6 @@ svg{
     stroke:none;
 }
 
-
 .hexagons g path:hover{
     stroke-opacity: 1;
     stroke-width:4;
@@ -78,9 +77,6 @@ svg{
     fill: red;
     fill-opacity: 1;
 }
-
-
-
 
 .map-title {
     font-family: 'Share Tech Mono', monospace;

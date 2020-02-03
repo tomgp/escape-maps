@@ -22,7 +22,11 @@ function unique(d, i, array) {
 function update() {
   d3.select('.map-title').text(title);
   d3.selectAll('.hexagons g')
-    .attr('class', d => d.state );
+    .attr('class', d => d.state )
+    .call(parent=>{
+      parent.selectAll('use')
+        .attr('href',d=>`#${d.state}-icon`);
+    });
 }
 
 function init(){
@@ -60,14 +64,18 @@ function init(){
       .attr('font-size','30')
       .attr('class','label')
       .text(d=>d.label);
-    
-    update();
+  
+  hexagons.append('use')
+    .attr('href','#blank')
+    .attr('transform',d=>`translate(${d.x},${d.y})`);
+  
+  update();
 
-    hexagons.on('click', function(d){
-      console.log(d);
-      d.state = nextState( d.state );
-      update();
-    });
+  hexagons.on('click', function(d){
+    console.log(d);
+    d.state = nextState( d.state );
+    update();
+  });
 }
 
 const main = () => {
