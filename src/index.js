@@ -5,14 +5,18 @@ const title = 'huh1?';
 // given a state for a hexagon, 
 // return the next one in the list 
 // or empty if no state is specified
-function nextState(s) {
-  const state = [
+const state = [
     "empty",
     "dangerous",
     "secure",
     "alien-start",
     "human-start",
     "airlock" ];
+
+let drawMode  = state[1];
+
+function nextState(s) {
+
   const i = state.indexOf(s) + 1;
   if( i < state.length ){
     return state[i];
@@ -89,9 +93,15 @@ function init(){
   
   update();
 
+  d3.selectAll('.key-element')
+    .on('click', function(d){
+      console.log('clcikckkck', this.dataset.state)
+      drawMode = this.dataset.state;
+    })
+
   hexagons.on('click', function(d){
     console.log(d);
-    d.state = nextState( d.state );
+    d.state = drawMode; //nextState( d.state );
     update();
   });
 }

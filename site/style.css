@@ -90,3 +90,40 @@ svg{
     stroke: none;
     pointer-events: none;
 }
+
+.icon-set{
+    display:none;
+}
+
+.ui{
+    padding:20px;
+    font-family: 'Share Tech Mono', monospace;
+    font-weight:bold;
+    color:#000000;
+    display: inline-block;
+    position: sticky; 
+    top:0px;
+    background:#EEEEEE;
+    border: 1px solid black;
+}
+
+.key-icon{
+    width: 20px;
+    height: 20px;
+}
+.key-element{
+    position: relative;
+    margin-top: 10px;
+    height: 20px;
+}
+.key-element:hover{
+    color: red;
+    cursor: pointer;
+}
+.key-text{
+    position: relative;
+    top:-6px;
+    display:inline-block;
+    vertical-align: middle;
+}
+
