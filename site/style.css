@@ -94,6 +94,10 @@ svg{
 .icon-set{
     display:none;
 }
+.map{
+    position: absolute;
+    top:0px;
+}
 
 .ui{
     padding:20px;
@@ -101,16 +105,12 @@ svg{
     font-weight:bold;
     color:#000000;
     display: inline-block;
-    position: sticky; 
+    position: absolute; 
     top:0px;
     background:#EEEEEE;
     border: 1px solid black;
 }
 
-.key-icon{
-    width: 20px;
-    height: 20px;
-}
 .key-element{
     position: relative;
     margin-top: 10px;
@@ -119,6 +119,11 @@ svg{
 .key-element:hover{
     color: red;
     cursor: pointer;
+}
+
+.key-icon{
+    width: 20px;
+    height: 20px;
 }
 .key-text{
     position: relative;
