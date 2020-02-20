@@ -1,6 +1,7 @@
 const d3 = require('d3');
 const alpha = "ABCDEFGHIJKLMNOPQRSTUVW";
 const title = 'huh1?';
+const styleAttributes = require('./style-attributes');
 
 // given a state for a hexagon, 
 // return the next one in the list 
@@ -36,6 +37,18 @@ function unique(d, i, array) {
   return array.indexOf(d) === i;
 }
 
+function applyStyleAttributes(){
+  //select elements and apply the appropriate attributes
+  styleAttributes.forEach(d=>{
+    d3.selectAll(d.selector)
+      .call(parent=>{
+        Object.entries(d.rules)
+          .forEach(([attribute, value])=>{
+            parent.attr(attribute, value);;
+          });
+      })
+  })
+}
 
 // something has changed, update the hexagons classes and icons
 function update() {
@@ -46,6 +59,31 @@ function update() {
       parent.selectAll('use')
         .attr('href',d=>`#${d.state}-icon`);
     });
+
+  applyStyleAttributes();    
+}
+
+function downloadMap(){
+  const svgString = new XMLSerializer().serializeToString(document.querySelector('svg#custom-escape-map'));
+  const canvas = document.getElementById('temp-canvas');
+  console.log('here 3');
+  const ctx = canvas.getContext('2d');
+  console.log('here 4');
+  const DOMURL = self.URL || self.webkitURL || self;
+  console.log('here 5');
+  const img = new Image();
+  const svg = new Blob([svgString], {type: "image/svg+xml;charset=utf-8"});
+  const url = DOMURL.createObjectURL(svg);
+  console.log('here');
+
+  img.onload = function() {
+    ctx.drawImage(img, 0, 0);
+    const png = canvas.toDataURL("image/png");
+    console.log(png)
+    document.querySelector('#png-container').innerHTML = '<img src="'+png+'"/>';
+    DOMURL.revokeObjectURL(png);
+  };
+  img.src = url;
 }
 
 // setup the map and all its data, initially it's all blank
@@ -95,15 +133,16 @@ function init(){
 
   d3.selectAll('.key-element')
     .on('click', function(d){
-      console.log('clcikckkck', this.dataset.state)
       drawMode = this.dataset.state;
     })
 
   hexagons.on('click', function(d){
-    console.log(d);
-    d.state = drawMode; //nextState( d.state );
+    d.state = drawMode; 
     update();
   });
+
+  d3.select('.save-button')
+    .on('click', downloadMap);
 }
 
 // when the page is all ready to go run the code.

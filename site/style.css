@@ -1,70 +1,9 @@
 body {
     font-family: sans-serif;
 }
+
 svg{
     user-select: none;
-}
-/* EMPTY */
-
-.empty path{
-    fill: url("#hatching");
-    stroke-opacity: 0;
-}
-
-.empty text{
-    fill: none;
-    stroke: none;
-}
-
-/* DANGEROUS */
-
-.dangerous path{
-    fill: #ccc;
-    stroke: #000;
-    stroke-opacity: 1;
-}
-.dangerous text{
-    fill:#000;
-    stroke: none;
-}
-
-/* SECURE */
-
-.secure path{
-    fill: #FFF;
-    stroke: #000;
-    stroke-opacity: 1;
-}
-.secure text{
-    fill:#000;
-    stroke: none;
-}
-
-/* ALIEN */
-.alien-start path{
-    fill:#000;
-}
-.alien-start text{
-    fill:none;
-    stroke:none;
-}
-
-/* HUMAN */
-.human-start path{
-    fill:#000;
-}
-.human-start text{
-    fill:none;
-    stroke:none;
-}
-
-/* AIRLOCK */
-.airlock path{
-    fill:#000;
-}
-.airlock text{
-    fill:none;
-    stroke:none;
 }
 
 .hexagons g path:hover{
@@ -76,19 +15,6 @@ svg{
 .hexagons g:hover text{
     fill: red;
     fill-opacity: 1;
-}
-
-.map-title {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 290px;
-    text-anchor:middle;
-}
-
-.label {
-    font-family: 'Share Tech Mono', monospace;
-    fill: black;
-    stroke: none;
-    pointer-events: none;
 }
 
 .icon-set{
