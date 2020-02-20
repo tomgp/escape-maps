@@ -105,7 +105,7 @@ svg{
     font-weight:bold;
     color:#000000;
     display: inline-block;
-    position: absolute; 
+    position: fixed; 
     top:0px;
     background:#EEEEEE;
     border: 1px solid black;
