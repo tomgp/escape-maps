@@ -8,15 +8,31 @@ svg{
     user-select: none;
 }
 
+hr{
+    border: 0px;
+    border-bottom: 1px solid black;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
 .grid{
     display: grid;
     grid-template-columns: 2fr 10fr;
+}
+
+a{
+    color: black;
+}
+
+a:hover{
+    color: red;
 }
 
 .hexagons g path:hover{
     stroke-opacity: 1;
     stroke-width:4;
     stroke: red;
+    cursor: pointer;
 }
 
 .hexagons g:hover text{
@@ -40,7 +56,12 @@ svg{
     display: inline-block;
     top:0px;
     background:#EEEEEE;
-    position: sticky;
+
+}
+
+ul{
+    list-style: none;
+    padding-left: 0px;
 }
 
 .title-input{
@@ -48,12 +69,18 @@ svg{
     margin:0px;
     border:0px;
     border-bottom:1px solid;
+    width: 95%;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 20px;
 }
 
 .key-element{
     position: relative;
     margin-top: 10px;
     min-height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .key-element:hover{
     color: red;
@@ -69,6 +96,10 @@ svg{
     top:-6px;
     display:inline-block;
     vertical-align: middle;
+}
+
+.about{
+    line-height: 1.5;
 }
 
 @media print and (min-width: 480px) {
