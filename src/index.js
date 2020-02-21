@@ -137,7 +137,7 @@ function init(){
       })
     .call((parent)=>{
       parent.append('text')
-        .text(d=>d)
+        .text(d=>pad(d))
         .attr('font-size','40px')
         .attr('text-anchor','end')
         .attr('font-family', '\'Share Tech Mono\', monospace');
