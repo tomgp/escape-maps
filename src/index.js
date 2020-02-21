@@ -65,25 +65,8 @@ function update() {
 
 function downloadMap(){
   const svgString = new XMLSerializer().serializeToString(document.querySelector('svg#custom-escape-map'));
-  const canvas = document.getElementById('temp-canvas');
-  console.log('here 3');
-  const ctx = canvas.getContext('2d');
-  console.log('here 4');
-  const DOMURL = self.URL || self.webkitURL || self;
-  console.log('here 5');
-  const img = new Image();
-  const svg = new Blob([svgString], {type: "image/svg+xml;charset=utf-8"});
-  const url = DOMURL.createObjectURL(svg);
-  console.log('here');
-
-  img.onload = function() {
-    ctx.drawImage(img, 0, 0);
-    const png = canvas.toDataURL("image/png");
-    console.log(png)
-    document.querySelector('#png-container').innerHTML = '<img src="'+png+'"/>';
-    DOMURL.revokeObjectURL(png);
-  };
-  img.src = url;
+  window.open(`data:image/svg+xml;utf8,${svgString.replace('\n','')}`,'_blank');
+  return(false);
 }
 
 // setup the map and all its data, initially it's all blank
