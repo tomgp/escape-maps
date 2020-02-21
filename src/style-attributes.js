@@ -40,7 +40,7 @@ const selectors  = [
     {
         selector:'.dangerous path',
         rules:{
-            'fill': '#CCCCCC',
+            'fill': '#EEEEEE',
             'stroke': '#000000',
             'stroke-opacity':1, 
         }
@@ -82,6 +82,14 @@ const selectors  = [
             'stroke': 'none',
         }
     },
+    /* Letters */
+    {
+        selector:'.letters',
+        rules:{
+            'font-size':'64px',
+            'font-family': '\'Share Tech Mono\', monospace',
+        }
+    }
 ];
 
 module.exports = selectors;

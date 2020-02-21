@@ -52,6 +52,7 @@ function applyStyleAttributes(){
 
 // something has changed, update the hexagons classes and icons
 function update() {
+  const title = d3.select('.title-input').node().value;
   d3.select('.map-title').text(title);
   d3.selectAll('.hexagons g')
     .attr('class', d => d.state )
@@ -60,13 +61,13 @@ function update() {
         .attr('href',d=>`#${d.state}-icon`);
     });
 
-  applyStyleAttributes();    
-}
+  applyStyleAttributes();
+  const svgString = new XMLSerializer()
+    .serializeToString(document.querySelector('svg#custom-escape-map'));
 
-function downloadMap(){
-  const svgString = new XMLSerializer().serializeToString(document.querySelector('svg#custom-escape-map'));
-  window.open(`data:image/svg+xml;utf8,${svgString.replace('\n','')}`,'_blank');
-  return(false);
+  d3.select('.save-button')
+    .attr('href',`data:image/svg+xml;utf8,${svgString.replace('\n','')}`)
+    .attr('download', `${title}.svg`);
 }
 
 // setup the map and all its data, initially it's all blank
@@ -113,6 +114,9 @@ function init(){
     .attr('transform',d => `translate(${d.x}, ${d.y})`);
   
   update();
+  
+  d3.select('.title-input')
+    .on('keyup', update);
 
   d3.selectAll('.key-element')
     .on('click', function(d){
@@ -123,9 +127,6 @@ function init(){
     d.state = drawMode; 
     update();
   });
-
-  d3.select('.save-button')
-    .on('click', downloadMap);
 }
 
 // when the page is all ready to go run the code.

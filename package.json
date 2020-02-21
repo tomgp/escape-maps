@@ -5,8 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "npx browser-sync start --server 'site'",
-    "build": "npx webpack ./src/index.js -o ./site/bundle.js --watch"
+    "serve": "npx browser-sync start --server 'docs'",
+    "build": "npx webpack ./src/index.js -o ./docs/bundle.js --watch"
   },
   "author": "tom.g.pearson@gmail.com",
   "license": "ISC",

@@ -1,9 +1,16 @@
 body {
     font-family: sans-serif;
+    padding: 0;
+    margin: 0;
 }
 
 svg{
     user-select: none;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: 2fr 10fr;
 }
 
 .hexagons g path:hover{
@@ -31,16 +38,22 @@ svg{
     font-weight:bold;
     color:#000000;
     display: inline-block;
-    position: fixed; 
     top:0px;
     background:#EEEEEE;
-    border: 1px solid black;
+    position: sticky;
+}
+
+.title-input{
+    padding:3px;
+    margin:0px;
+    border:0px;
+    border-bottom:1px solid;
 }
 
 .key-element{
     position: relative;
     margin-top: 10px;
-    height: 20px;
+    min-height: 20px;
 }
 .key-element:hover{
     color: red;
@@ -58,3 +71,11 @@ svg{
     vertical-align: middle;
 }
 
+@media print and (min-width: 480px) {
+    .ui {
+        display: none;
+    }
+    .grid{
+        grid-template-columns: 1fr;
+    }
+}
