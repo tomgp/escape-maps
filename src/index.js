@@ -1,6 +1,5 @@
-const d3 = require('d3');
+import {selectAll, select, range} from 'd3';
 const alpha = "ABCDEFGHIJKLMNOPQRSTUVW";
-const title = 'huh1?';
 const styleAttributes = require('./style-attributes');
 
 // given a state for a hexagon, 
@@ -36,11 +35,12 @@ function pad(n){
 function unique(d, i, array) { 
   return array.indexOf(d) === i;
 }
+selectAll, select, range
 
 function applyStyleAttributes(){
   //select elements and apply the appropriate attributes
   styleAttributes.forEach(d=>{
-    d3.selectAll(d.selector)
+    selectAll(d.selector)
       .call(parent=>{
         Object.entries(d.rules)
           .forEach(([attribute, value])=>{
@@ -52,9 +52,11 @@ function applyStyleAttributes(){
 
 // something has changed, update the hexagons classes and icons
 function update() {
-  const title = d3.select('.title-input').node().value;
-  d3.select('.map-title').text(title);
-  d3.selectAll('.hexagons g')
+  const title = select('.title-input').node().value;
+  
+  select('.map-title').text(title);
+  
+  selectAll('.hexagons g')
     .attr('class', d => d.state )
     .call(parent=>{
       parent.selectAll('use')
@@ -65,18 +67,17 @@ function update() {
   const svgString = new XMLSerializer()
     .serializeToString(document.querySelector('svg#custom-escape-map'));
 
-  d3.select('.save-button')
+  select('.save-button')
     .attr('href',`data:image/svg+xml;utf8,${svgString.replace('\n','')}`)
     .attr('download', `${title}.svg`);
 }
 
 // setup the map and all its data, initially it's all blank
 function init(){
-  const hexagons = d3
-    .selectAll('.hexagons g')
+  const hexagons = selectAll('.hexagons g')
     .each(function(d,i){
       const rect = this.getBBox()
-      d3.select(this)
+      select(this)
         .classed('location',true)
         .datum({
           x:Math.floor(rect.x), 
@@ -92,12 +93,12 @@ function init(){
     .filter(unique).sort((a,b)=>a-b);
 
   hexagons.each(function(){
-    const d = d3.select(this).datum();
+    const d = select(this).datum();
     d.row = columns.indexOf(d.x);
     d.column = Math.floor(rows.indexOf(d.y)/2);
     d.label = `${alpha[d.row]}${pad(d.column + 1)}`;
     d.state = nextState();
-    d3.select(this).datum(d);
+    select(this).datum(d);
   });
 
   hexagons.attr('id',d=>d.label)
@@ -114,7 +115,7 @@ function init(){
     .attr('transform',d => `translate(${d.x}, ${d.y})`);
   
   const hexWidth = hexagons.data()[0].width;
-  d3.select('.letters')
+  select('.letters')
       .selectAll('text')
     .data('ABCDEFGHIJKLMNOPQRSTUVW'.split(''))
       .enter()
@@ -123,10 +124,10 @@ function init(){
       .attr('transform',(d,i)=>`translate(${columns[i]+hexWidth/2},${rows[0]-50})`)
       .attr('text-anchor','middle');
 
-  d3.select('.movement')
+  select('.movement')
     .attr('transform',`translate(${columns[0]},0)`)
     .selectAll('g')
-      .data(d3.range(1,40,1))
+      .data(range(1,40,1))
     .enter()
       .append('g')
       .attr('transform', (d, i)=>{
@@ -152,10 +153,10 @@ function init(){
 
   update();
   
-  d3.select('.title-input')
+  select('.title-input')
     .on('keyup', update);
 
-  d3.selectAll('.key-element')
+  selectAll('.key-element')
     .on('click', function(d){
       drawMode = this.dataset.state;
     })
