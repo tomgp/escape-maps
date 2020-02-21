@@ -113,6 +113,16 @@ function init(){
     .attr('href','#blank')
     .attr('transform',d => `translate(${d.x}, ${d.y})`);
   
+  const hexWidth = hexagons.data()[0].width;
+  d3.select('.letters')
+      .selectAll('text')
+    .data('ABCDEFGHIJKLMNOPQRSTUVW'.split(''))
+      .enter()
+    .append('text')
+      .text(d=>d)
+      .attr('transform',(d,i)=>`translate(${columns[i]+hexWidth/2},${rows[0]-50})`)
+      .attr('text-anchor','middle');
+
   update();
   
   d3.select('.title-input')
