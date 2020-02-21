@@ -119,9 +119,36 @@ function init(){
     .data('ABCDEFGHIJKLMNOPQRSTUVW'.split(''))
       .enter()
     .append('text')
-      .text(d=>d)
+      .text(d => d)
       .attr('transform',(d,i)=>`translate(${columns[i]+hexWidth/2},${rows[0]-50})`)
       .attr('text-anchor','middle');
+
+  d3.select('.movement')
+    .attr('transform',`translate(${columns[0]},0)`)
+    .selectAll('g')
+      .data(d3.range(1,40,1))
+    .enter()
+      .append('g')
+      .attr('transform', (d, i)=>{
+        const y = 500 + Math.floor(i/13) * 70;
+        const x = i%13 * hexWidth * 1.4;
+        return `translate(${x},${y})`;
+      })
+    .call((parent)=>{
+      parent.append('text')
+        .text(d=>d)
+        .attr('font-size','40px')
+        .attr('text-anchor','end')
+        .attr('font-family', '\'Share Tech Mono\', monospace');
+
+      parent.append('line')
+        .attr('x1',10)
+        .attr('x2',100)
+        .attr('y1',5)
+        .attr('y2',5)
+        .attr('stroke','#000000')
+        .attr('stroke-width',3);
+    });
 
   update();
   
