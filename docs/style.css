@@ -64,6 +64,10 @@ ul{
     padding-left: 0px;
 }
 
+li::before{
+    content: '> ';
+}
+
 .title-input{
     padding:3px;
     margin:0px;
@@ -76,15 +80,18 @@ ul{
 
 .key-element{
     position: relative;
-    margin-top: 10px;
+    padding-top: 30px;
+
     min-height: 20px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    border-bottom: 1px solid #aaaaaa;
 }
 .key-element:hover{
     color: red;
     cursor: pointer;
+    border-bottom: 1px solid red;
 }
 
 .key-icon{

@@ -1,7 +1,9 @@
-import {selectAll, select, range} from 'd3';
-const alpha = "ABCDEFGHIJKLMNOPQRSTUVW";
+import {event, selectAll, select, range, interpolate} from 'd3';
 const styleAttributes = require('./style-attributes');
+const defaultMaps = require('./official-maps.js');
 
+const alpha = "ABCDEFGHIJKLMNOPQRSTUVW";
+const dataStore = window.localStorage;
 // given a state for a hexagon, 
 // return the next one in the list 
 // or empty if no state is specified
@@ -67,13 +69,79 @@ function update() {
   const svgString = new XMLSerializer()
     .serializeToString(document.querySelector('svg#custom-escape-map'));
 
-  select('.save-button')
+  select('.save-svg-button')
     .attr('href',`data:image/svg+xml;utf8,${svgString.replace('\n','')}`)
     .attr('download', `${title}.svg`);
+    
+  select('.save-data-button')
+    .on('click', ()=>{
+      event.preventDefault();
+      saveData();
+      return false;
+    });
+}
+
+function saveData(){
+  console.log('save to local storage');
+
+  const d = {
+    type: 'map',
+    title: select('.map-title').text(), 
+    grid:selectAll('.hexagons g').data(), 
+  };
+
+  dataStore.setItem(d.title, JSON.stringify(d));
+  console.log( 'stored --- ', Object.keys(dataStore) );
+  updateMapList();
+}
+
+function updateMapList(){
+  const localMaps = Object.keys(dataStore);
+  const allMaps = [
+    ...localMaps.map(d=>({
+      title: d,
+      type: 'local'
+    })),
+    'original maps',
+    ...defaultMaps.map((d,i)=>({
+      title: d.title,
+      type: 'default',
+      index: i
+  }))];
+  select('select.map-list')
+    .on('input', function(){
+      const selected = select(this).select('option:checked')
+      const selectedData = selected.node().dataset;
+      let mapData;
+      if(selectedData.type == 'default'){
+        mapData = defaultMaps[selectedData.index];
+      }else if(selectedData.type == 'local'){
+        mapData = JSON.parse(dataStore.getItem(selectedData.title));
+      }
+      applyData(mapData);
+    })
+    .selectAll('option')
+      .data(allMaps)
+    .enter()
+      .append('option')
+      .attr('data-type', d=>d.type)
+      .attr('data-title', d=>d.title)
+      .attr('data-index', d=>d.index)
+      .text(d=>d.title)
+}
+
+function applyData(mapData){
+  if(mapData.grid){
+    console.log('can do it, yes grid');
+  }else{
+    console.log("can't do it, no grid");
+  }
+  console.log('apply!');
 }
 
 // setup the map and all its data, initially it's all blank
 function init(){
+  updateMapList();
   const hexagons = selectAll('.hexagons g')
     .each(function(d,i){
       const rect = this.getBBox()

@@ -1,0 +1,17 @@
+module.exports = [
+    require('./maps/ascesa.json'),
+    require('./maps/balena.json'),
+    require('./maps/cavour.json'),
+    require('./maps/dileme.json'),
+    require('./maps/en-garde.json'),
+    require('./maps/fermi.json'),
+    require('./maps/frenzy.json'),
+    require('./maps/galilei.json'),
+    require('./maps/galvani.json'),
+    require('./maps/garibaldi.json'),
+    require('./maps/machiavelli.json'),
+    require('./maps/morgenland.json'),
+    require('./maps/sinistra.json'),
+    require('./maps/socrates.json'),
+    require('./maps/sound-of-silence.json'),
+]
