@@ -59,11 +59,13 @@ function update() {
   select('.map-title').text(title);
   
   selectAll('.hexagons g')
-    .attr('class', d => d.state )
-    .call(parent=>{
-      parent.selectAll('use')
-        .attr('href',d=>`#${d.state}-icon`);
-    });
+    .attr('class', d =>{
+      return d.state
+    })
+    .select('use')
+      .attr('href',d=>{
+        return `#${d.state}-icon`;
+      });
 
   applyStyleAttributes();
   const svgString = new XMLSerializer()
@@ -91,7 +93,6 @@ function saveData(){
   };
 
   dataStore.setItem(d.title, JSON.stringify(d));
-  console.log( 'stored --- ', Object.keys(dataStore) );
   updateMapList();
 }
 
@@ -132,11 +133,13 @@ function updateMapList(){
 
 function applyData(mapData){
   if(mapData.grid){
-    console.log('can do it, yes grid');
+    mapData.grid.forEach(d=>{
+      select(`g#${d.label}`).datum(d);
+    })
+    update();
   }else{
     console.log("can't do it, no grid");
   }
-  console.log('apply!');
 }
 
 // setup the map and all its data, initially it's all blank
