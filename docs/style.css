@@ -56,7 +56,6 @@ a:hover{
     display: inline-block;
     top:0px;
     background:#EEEEEE;
-
 }
 
 ul{
@@ -68,9 +67,10 @@ li::before{
     content: '> ';
 }
 
-.title-input{
+.title-input, select{
     padding:3px;
     margin:0px;
+    margin-bottom: 10px;
     border:0px;
     border-bottom:1px solid;
     width: 95%;
@@ -78,20 +78,30 @@ li::before{
     font-size: 20px;
 }
 
+select{
+    margin-top:15px;
+}
+
 .key-element{
     position: relative;
-    padding-top: 30px;
-
+    margin:5px;
+    margin-left:0px;
+    margin-right:0px;
+    padding: 10px;
     min-height: 20px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     border-bottom: 1px solid #aaaaaa;
+    border:5px solid;
+    border-color:rgba(255,255,255,0.4)  rgba(0,0,0,0.4)  rgba(0,0,0,0.4)  rgba(255,255,255,0.4);
 }
 .key-element:hover{
     color: red;
     cursor: pointer;
-    border-bottom: 1px solid red;
+    border-color: rgba(0,0,0,0.4) rgba(255,255,255,0.4)  rgba(255,255,255,0.4) rgba(0,0,0,0.4) ;
+    padding-bottom:7px;
+    padding-top:13px;
 }
 
 .key-icon{
