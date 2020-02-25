@@ -92,11 +92,11 @@ select{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    border-bottom: 1px solid #aaaaaa;
-    border:5px solid;
+    border: 5px solid;
     border-color:rgba(255,255,255,0.4)  rgba(0,0,0,0.4)  rgba(0,0,0,0.4)  rgba(255,255,255,0.4);
 }
 .key-element:hover{
+    background-color: rgba(0,0,0,0.08);
     color: red;
     cursor: pointer;
     border-color: rgba(0,0,0,0.4) rgba(255,255,255,0.4)  rgba(255,255,255,0.4) rgba(0,0,0,0.4) ;
