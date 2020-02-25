@@ -95,13 +95,17 @@ select{
     border: 5px solid;
     border-color:rgba(255,255,255,0.4)  rgba(0,0,0,0.4)  rgba(0,0,0,0.4)  rgba(255,255,255,0.4);
 }
-.key-element:hover{
+.key-element:hover, .key-element.selected{
     background-color: rgba(0,0,0,0.08);
     color: red;
     cursor: pointer;
     border-color: rgba(0,0,0,0.4) rgba(255,255,255,0.4)  rgba(255,255,255,0.4) rgba(0,0,0,0.4) ;
     padding-bottom:7px;
     padding-top:13px;
+}
+
+div.key-element.selected{
+    color: black;
 }
 
 .key-icon{

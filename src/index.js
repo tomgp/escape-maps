@@ -232,6 +232,8 @@ function init(){
   selectAll('.key-element')
     .on('click', function(d){
       drawMode = this.dataset.state;
+      selectAll('.key-element').classed('selected',false);
+      select(this).classed('selected',true);
     })
 
   hexagons.on('click', function(d){
