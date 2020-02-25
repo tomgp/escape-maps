@@ -17,6 +17,8 @@ There is a map creation tool on the game's website but it has stopped working (o
 
 ## Notes
 
+Unlike the original maps, the airlocks are not numbered.
+
 I'm going to recreate all the original maps in the tool in spare moments over the next week or so.
 
 The UI is basic and my best guess at what will be useful though I have conducted zero user testing -- your feedback is welcome.

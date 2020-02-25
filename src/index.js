@@ -92,6 +92,10 @@ function saveData(){
     grid:selectAll('.hexagons g').data(), 
   };
 
+  console.log('--- SAVE ---');
+  console.log(JSON.stringify(d));
+  console.log('---      ---');
+
   dataStore.setItem(d.title, JSON.stringify(d));
   updateMapList();
 }
