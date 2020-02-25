@@ -99,11 +99,12 @@ function saveData(){
 function updateMapList(){
   const localMaps = Object.keys(dataStore);
   const allMaps = [
+    '------',
     ...localMaps.map(d=>({
       title: d,
       type: 'local'
     })),
-    'original maps',
+    '------',
     ...defaultMaps.map((d,i)=>({
       title: d.title,
       type: 'default',
@@ -128,7 +129,7 @@ function updateMapList(){
       .attr('data-type', d=>d.type)
       .attr('data-title', d=>d.title)
       .attr('data-index', d=>d.index)
-      .text(d=>d.title)
+      .text(d=>(d.title ? d.title : d))
 }
 
 function applyData(mapData){
@@ -136,6 +137,7 @@ function applyData(mapData){
     mapData.grid.forEach(d=>{
       select(`g#${d.label}`).datum(d);
     })
+    select('.title-input').node().value = mapData.title;
     update();
   }else{
     console.log("can't do it, no grid");
