@@ -11,7 +11,7 @@ A. Humans trying to escape from a damaged space station avoiding being killed by
 
 ## Why?
 
-I started playing EFTAIOS last year (2019) after upon [the game's page on BGG](https://www.boardgamegeek.com/boardgame/82168/escape-aliens-outer-space) whilst looking for short(ish) games to play with 7+ people. I bought and put together the print and play version and a couple of weeks after that I bought the boxed game from [Osprey](https://ospreypublishing.com/escape-from-the-aliens-in-outer-space) -- the cards are much better though I still prefer to use paper and pencil to the dry wipe pens and pads provided.
+I started playing EFTAIOS last year (2019) after stumbling upon [the game's page on BGG](https://www.boardgamegeek.com/boardgame/82168/escape-aliens-outer-space) whilst looking for short(ish) games to play with 7+ people. I bought and put together the print and play version and a couple of weeks after that I bought the boxed game from [Osprey](https://ospreypublishing.com/escape-from-the-aliens-in-outer-space) -- the cards are much better though I still prefer to use paper and pencil to the dry wipe pens and pads provided.
 
 There is a map creation tool on the game's website but it has stopped working (or atleast it doesn't work for me) because it uses Flash. I figured it wouldn't take me long to make my own version so when the design studio I was working for decided to close its doors I took some time in between the shutting down/ archiving activities to put together a new version using HTML, Javascript and CSS.
 
